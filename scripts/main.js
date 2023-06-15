@@ -12,6 +12,7 @@ const words = ['cavalo','pilantra','javali','acrobata','abajur','beijar','matar'
 const chars = []
 const sub_posx = 100,sub_posy = 350
 const gallows_posx = 25, gallows_posy = 50
+const hangman_posx = 180, hangman_posy = 110
 
 function init(){
     chosen_word = words[Math.floor(Math.random()*words.length)]
@@ -21,6 +22,8 @@ function init(){
 function update(){
     draw_gallows()
     ger_word()
+    num_error = 6
+    draw_hangman(num_error)
 }
 
 function ger_word(){
@@ -38,7 +41,40 @@ function draw_gallows(){
 
 }
 
-function draw_hangman
+function draw_hangman(num){
+    if(num == 0)return 0
+    ctx.beginPath()
+    ctx.lineWidth = 3
+    ctx.arc(hangman_posx,hangman_posy,20,0,2*Math.PI,false)
+    ctx.stroke()
+    if(num == 1)return 0
+    ctx.fillRect(hangman_posx,hangman_posy+20,3,75)
+    if(num === 2)return 0
+    ctx.save()
+    ctx.translate(hangman_posx,hangman_posy+20)
+    ctx.rotate(50/180*Math.PI)
+    ctx.fillRect(0,0,3,50)
+    ctx.restore()
+    if(num == 3)return 0
+    ctx.save()
+    ctx.translate(hangman_posx,hangman_posy+20)
+    ctx.rotate(-50/180*Math.PI)
+    ctx.fillRect(0,+3,3,50)
+    ctx.restore()
+    if(num == 4)return 0
+    ctx.save()
+    ctx.translate(hangman_posx,hangman_posy+95)
+    ctx.rotate(50/180*Math.PI)
+    ctx.fillRect(0,-2,3,50)
+    ctx.restore()
+    if(num == 5)return 0
+    ctx.save()
+    ctx.translate(hangman_posx,hangman_posy+95)
+    ctx.rotate(-50/180*Math.PI)
+    ctx.fillRect(0,0,3,50)
+    ctx.restore()
+    if(num == 6)return 1
+}
 
 function send(){
 
